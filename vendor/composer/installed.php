@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'admin/ezcode',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => 'ecff8aa35de84f0df20b09d0bf59c8f200fdd97c',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,11 +11,20 @@
     ),
     'versions' => array(
         'admin/ezcode' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => 'ecff8aa35de84f0df20b09d0bf59c8f200fdd97c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'eftec/bladeone' => array(
+            'pretty_version' => '4.9',
+            'version' => '4.9.0.0',
+            'reference' => '019036c226086fbe7591360d260067c5d82400ca',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../eftec/bladeone',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
