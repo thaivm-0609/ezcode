@@ -11,10 +11,11 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Decsription</th>
+            <th>Description</th>
             <th>Price</th>
             <th>Status</th>
             <th>Total register</th>
+            <th>Action</th>
         </tr>
         <?php foreach($courses as $course) { ?>
             <tr>
@@ -24,6 +25,10 @@
                 <td><?=$course['price'] ?></td>
                 <td><?=$course['status'] ?></td>
                 <td><?=$course['total_register'] ?></td>
+                <td>
+                    <button><a href="<?=route('admin/courses/'.$course['id'].'/edit')?>">Edit</a></button>    
+                    <button><a href="<?=route(`admin/courses/{$course['id']}/delete`) ?>">Delete</a></button>    
+                </td>
             </tr>
         <?php } ?>
     </table>

@@ -24,5 +24,13 @@ class BaseModel {
 
         return $stmt->fetchAll();
     }
+
+    public function getDataById($query) {
+        $conn = $this->getConnect();
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
 }
 ?>

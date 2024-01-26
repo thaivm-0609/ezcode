@@ -14,5 +14,12 @@ class Course extends BaseModel {
         // die;
         return $this->getData($query);
     }
+
+    public function getById($id) {
+        $query = "SELECT * FROM ".$this->table." WHERE id = ".$id;
+        // var_dump($query);
+        // die;
+        return $this->getDataById($query);
+    }
 }
 ?>
