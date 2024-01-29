@@ -1,0 +1,22 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+ <form action="" method="post">
+ <label for="">Name</label>
+ <input type="text">
+ <br>
+ <label for="">Description</label>
+ <input type="text">
+ <br>
+ <label for="">Price</label>
+ <input type="text">
+ <br>
+ <label for="">Status</label>
+ <input type="text">
+ <br>
+ <label for="">Total_register</label>
+ <input type="text">
+ <br>
+ </form>
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.admin'); } ?>

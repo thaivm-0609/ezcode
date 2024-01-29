@@ -15,10 +15,11 @@ $route: '/', '/products'
 $handler: hàm xử lý 
 */
 
-$router->get('/', [CourseController::class,'listCourse']);    # match only get requests
-$router->get('/products', function () {
-    echo "products";
+
+$router->get('/login', function () {
+    echo "Đây là trang đăng nhập";
 });
+
 
 $router->filter('auth', function () {
     if (!isset($_SESSION['user'])) {
@@ -30,18 +31,21 @@ $router->filter('auth', function () {
 
 //filter group
 //prefix
-$router->group(['prefix'=>'admin'], function ($router) {
-    $router->get('/courses', [CourseController::class,'listCourse']);
-    $router->get('/courses/{id}/edit', [CourseController::class, 'edit']);
-    $router->post('/courses/{id}/update', [CourseController::class, 'update']);
+$router->group(['prefix'=>'/admin'], function ($router) {
+    $router->group(['prefix'=>'/courses'], function ($router) {
+        $router->get('/', [CourseController::class,'listCourse']);
+        $router->get('/create', [CourseController::class, 'create']); //chuyển sang form thêm mới khoá học
+        $router->post('/post', [CourseController::class, 'post']); //đẩy dữ liệu lưu vào trong db
     
+        $router->get('/{id}/edit', [CourseController::class, 'edit']);
+        $router->post('/{id}/update', [CourseController::class, 'update']);
+    });
+
     $router->get('/users', [CourseController::class,'listCourse']);
+
     $router->get('/comments', [CourseController::class,'listCourse']);    
 });
 
-$router->get('/login', function () {
-    echo "Đây là trang đăng nhập";
-});
 
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
 $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], $url);
