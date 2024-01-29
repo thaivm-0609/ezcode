@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.admin')
+@section('content')
+    @auth 
+        <span> {{$username}} </span>
+    @endauth
+
+    @guest 
+        <button>Đăng Nhập</button>
+    @endguest
+    <a href="<?=route('/courses/create')?>"><input type="button" value="Thêm mới"></a>
     <table>
         <tr>
             <th>ID</th>
@@ -17,7 +18,7 @@
             <th>Total register</th>
             <th>Action</th>
         </tr>
-        <?php foreach($courses as $course) { ?>
+        @foreach($courses as $course)
             <tr>
                 <td><?=$course['id'] ?></td>
                 <td><?=$course['name'] ?></td>
@@ -30,7 +31,6 @@
                     <button><a href="<?=route(`admin/courses/{$course['id']}/delete`) ?>">Delete</a></button>    
                 </td>
             </tr>
-        <?php } ?>
+        @endforeach
     </table>
-</body>
-</html>
+@endsection

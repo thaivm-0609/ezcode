@@ -1,0 +1,39 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+ <?php if(isset($this->currentUser)): ?> 
+ <span> <?php echo \htmlentities($username??'', ENT_QUOTES, 'UTF-8', false); ?> </span>
+ <?php endif; ?>
+
+ <?php if(!isset($this->currentUser)): ?> 
+ <button>Đăng Nhập</button>
+ <?php endif; ?>
+ <a href="<?=route('/courses/create')?>"><input type="button" value="Thêm mới"></a>
+ <table>
+ <tr>
+ <th>ID</th>
+ <th>Name</th>
+ <th>Description</th>
+ <th>Price</th>
+ <th>Status</th>
+ <th>Total register</th>
+ <th>Action</th>
+ </tr>
+ <?php $__currentLoopData = $courses; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $course): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <td><?=$course['id'] ?></td>
+ <td><?=$course['name'] ?></td>
+ <td><?=$course['description'] ?></td>
+ <td><?=$course['price'] ?></td>
+ <td><?=$course['status'] ?></td>
+ <td><?=$course['total_register'] ?></td>
+ <td>
+ <button><a href="<?=route('admin/courses/'.$course['id'].'/edit')?>">Edit</a></button>    
+ <button><a href="<?=route(`admin/courses/{$course['id']}/delete`) ?>">Delete</a></button>    
+ </td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </table>
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.admin'); } ?>
